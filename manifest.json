@@ -1,0 +1,7 @@
+{
+  "name": "Estonia Best Ping (Rotterdam RTC)",
+  "description": "Автоматически ставит ближайший к Эстонии голосовой сервер (Rotterdam) в звонках",
+  "authors": [{ "name": "Custom", "id": "0" }],
+  "main": "index.js",
+  "vendetta": { "icon": "ic_globe_24px" }
+}
