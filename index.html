@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#6750a4">
   <title>Estonia Best Ping</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Russo+One&display=swap" rel="stylesheet">
   <style>
-    @font-face { font-family: PriceDown; src: url("https://ffont.ru/upls/fonts/p/pricedow.ttf") format("truetype"); font-display: swap; }
-    @font-face { font-family: Minecraftia; src: url("https://ffont.ru/upls/fonts/m/minecraft.ttf") format("truetype"); font-display: swap; }
-    @font-face { font-family: RibbonHeart; src: url("https://fonts-online.ru/upls/font_files/ribbon-heart.ttf") format("truetype"); font-display: swap; }
     :root { --bg:#fffbfe; --surface:#f3edf7; --surface-2:#e8def8; --primary:#6750a4; --on-primary:#fff; --text:#1d1b20; --muted:#49454f; --border:rgba(73,69,79,.18); --shadow:0 16px 48px rgba(29,27,32,.14); --glow:rgba(103,80,164,.2); }
     * { box-sizing:border-box; }
     body { margin:0; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; padding:88px 20px 32px; overflow-x:hidden; background:radial-gradient(circle at 12% 12%,var(--glow),transparent 28rem),radial-gradient(circle at 88% 88%,rgba(3,0,56,.1),transparent 24rem),var(--bg); color:var(--text); font-family:Roboto,system-ui,-apple-system,"Segoe UI",sans-serif; transition:background .3s ease,color .3s ease; }
@@ -18,10 +18,12 @@
     body[data-accent="green"] { --primary:#386a20; --on-primary:#fff; --glow:rgba(56,106,32,.2); }
     body[data-accent="pink"] { --primary:#984061; --on-primary:#fff; --glow:rgba(152,64,97,.2); }
     body[data-accent="orange"] { --primary:#8b5000; --on-primary:#fff; --glow:rgba(139,80,0,.2); }
-    body[data-font="gta"] { font-family:PriceDown,"Arial Black",Impact,sans-serif; }
+    body[data-font="gta"] { font-family:"Russo One",Impact,sans-serif; }
     body[data-font="coloros"] { font-family:"OPPO Sans","ColorOS Sans",Roboto,Arial,sans-serif; }
-    body[data-font="minecraft"] { font-family:Minecraftia,"Minecraft",monospace; }
-    body[data-font="hearts"] { font-family:RibbonHeart,"Comic Sans MS",cursive; }
+    body[data-font="minecraft"] { font-family:"Press Start 2P","Courier New",monospace; }
+    body[data-font="hearts"] { font-family:"Comic Sans MS",cursive; }
+    body[data-font="hearts"] h1::after { content:"  ♥"; color:#e34b83; font-size:.65em; }
+    body[data-font="hearts"] .button::before { content:"♥ "; color:#e34b83; }
     .settings-wrap { position:fixed; z-index:20; top:16px; right:16px; width:52px; height:52px; }
     .gear { position:absolute; inset:0; width:52px; height:52px; display:grid; place-items:center; padding:0; border:1px solid var(--border); border-radius:50%; background:var(--surface); color:var(--text); box-shadow:var(--shadow); font:24px/1 system-ui,sans-serif; cursor:pointer; transition:transform .25s ease; }
     .gear:hover { transform:rotate(35deg); }
@@ -52,12 +54,17 @@
     body[data-style="nothing"] .card { border:2px solid var(--text); border-radius:8px; box-shadow:8px 8px 0 var(--primary); }
     body[data-style="nothing"] .icon { border-radius:50%; background:var(--text); color:var(--bg); box-shadow:none; }
     body[data-style="nothing"] .button { border-radius:4px; text-transform:uppercase; }
-    @keyframes chaos-float { 0%,100% { transform:translate(-3px,2px) rotate(-2deg); } 50% { transform:translate(4px,-4px) rotate(3deg); } }
-    @keyframes chaos-letter { 0%,100% { transform:translate(0) rotate(0) scale(1); } 35% { transform:translate(var(--dx),var(--dy)) rotate(var(--rot)) scale(1.13); } 70% { transform:translate(calc(var(--dx)*-1),calc(var(--dy)*-1)) rotate(calc(var(--rot)*-1)); } }
+    @keyframes chaos-float { 0%,100% { transform:translate(-3px,2px) rotate(-2deg) scale(1); } 25% { transform:translate(6px,-8px) rotate(5deg) scale(1.03); } 50% { transform:translate(-7px,5px) rotate(-6deg) scale(.98); } 75% { transform:translate(4px,9px) rotate(4deg) scale(1.02); } }
+    @keyframes chaos-letter { 0%,100% { transform:translate(0) rotate(0) scale(1); } 25% { transform:translate(var(--dx),var(--dy)) rotate(var(--rot)) scale(1.2); } 50% { transform:translate(calc(var(--dx)*-1),calc(var(--dy)*-1)) rotate(calc(var(--rot)*-1)) scale(.85); } 75% { transform:translate(var(--dy),calc(var(--dx)*-1)) rotate(25deg); } }
     @keyframes chaos-hue { to { filter:hue-rotate(360deg); } }
-    body.chaos-mode { background-size:200% 200%; animation:chaos-hue 6s linear infinite; }
-    body.chaos-mode .card,body.chaos-mode .button,body.chaos-mode .icon { animation:chaos-float 1.8s ease-in-out infinite; }
-    body.chaos-mode .chaos-char { display:inline-block; animation:chaos-letter 1.7s ease-in-out infinite; animation-delay:var(--delay); }
+    @keyframes chaos-wobble { 0%,100% { rotate:-2deg; } 50% { rotate:2deg; } }
+    body.chaos-mode { background-size:200% 200%; animation:chaos-hue 4s linear infinite; }
+    body.chaos-mode .card { animation:chaos-float 1.4s ease-in-out infinite,chaos-wobble .3s ease-in-out infinite; }
+    body.chaos-mode .button { animation:chaos-float .9s ease-in-out infinite; }
+    body.chaos-mode .button:nth-child(2) { animation-delay:-.3s; }
+    body.chaos-mode .button:nth-child(3) { animation-delay:-.6s; }
+    body.chaos-mode .icon { animation:chaos-float .55s ease-in-out infinite; }
+    body.chaos-mode .chaos-char { position:relative; display:inline-block; animation:chaos-letter 1.1s ease-in-out infinite; animation-delay:var(--delay); }
     @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; animation-iteration-count:1!important; scroll-behavior:auto!important; } }
     @media (max-width:480px) { .settings-wrap { top:max(12px,env(safe-area-inset-top)); right:max(12px,env(safe-area-inset-right)); } body { padding:76px 16px 24px; } }
   </style>
@@ -69,8 +76,8 @@
       <h2 id="settings-title">Настройки сайта</h2>
       <div class="setting"><label for="style-select">Стиль оформления</label><select id="style-select"><option value="material">Material You 3</option><option value="glass">Liquid Glass</option><option value="nothing">Nothing OS</option></select></div>
       <div class="setting"><label for="mode-select">Тема</label><select id="mode-select"><option value="system">Как в системе</option><option value="light">Светлая</option><option value="dark">Тёмная</option></select></div>
-      <div class="setting"><label for="accent-select">Акцентный цвет</label><select id="accent-select"><option value="purple">Фиолетовый</option><option value="blue">Синий</option><option value="green">Зелёный</option><option value="pink">Розовый</option><option value="orange">Оранжевый</option></select></div>
-      <div class="setting"><label for="font-select">Шрифт</label><select id="font-select"><option value="roboto">Roboto</option><option value="gta">GTA: San Andreas</option><option value="coloros">ColorOS / OPPO Sans</option><option value="minecraft">Minecraft</option><option value="hearts">С сердечками (Ribbon Heart)</option></select></div>
+      <div class="setting"><label for="accent-select">Акцентный цвет</label><select id="accent-select"><option value="purple">Фиолет��вый</option><option value="blue">Синий</option><option value="green">Зелёный</option><option value="pink">Розовый</option><option value="orange">Оранжевый</option></select></div>
+      <div class="setting"><label for="font-select">Шрифт</label><select id="font-select"><option value="roboto">Roboto</option><option value="gta">GTA-подобный (Russo One)</option><option value="coloros">ColorOS / системный похожий</option><option value="minecraft">Пиксельный (Press Start 2P)</option><option value="hearts">С сердечками</option></select></div>
       <div class="setting"><label>Отдельная утилита</label><button class="chaos-control" id="chaos-toggle" type="button" aria-pressed="false">🌀 Включить хаос</button></div>
     </section>
   </div>
@@ -117,9 +124,9 @@
         span.setAttribute('aria-hidden','true');
         span.textContent = char === ' ' ? '\u00a0' : char;
         span.style.setProperty('--delay',`${(Math.random()*1.8).toFixed(2)}s`);
-        span.style.setProperty('--dx',`${Math.round(Math.random()*14-7)}px`);
-        span.style.setProperty('--dy',`${Math.round(Math.random()*16-8)}px`);
-        span.style.setProperty('--rot',`${Math.round(Math.random()*50-25)}deg`);
+        span.style.setProperty('--dx',`${Math.round(Math.random()*22-11)}px`);
+        span.style.setProperty('--dy',`${Math.round(Math.random()*24-12)}px`);
+        span.style.setProperty('--rot',`${Math.round(Math.random()*90-45)}deg`);
         element.append(span);
       }
     }
