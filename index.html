@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#6750a4">
   <title>Estonia Best Ping</title>
   <style>
-    :source { --bg: #fffbfe; --surface: #f3edf7; --surface-high: #ece6ee; --primary: #6750a4; --on-primary: #fff; --text: #1d1b20; --muted: #49454f; --outline: #79747e; }
+    :root { --bg: #fffbfe; --surface: #f3edf7; --primary: #6750a4; --on-primary: #fff; --text: #1d1b20; --muted: #49454f; }
     * { box-sizing: border-box; }
     body {
       margin: 0;
@@ -43,6 +43,8 @@
     }
     h1 { margin: 24px 0 10px; font-size: clamp(32px, 7vw, 52px); line-height: 1.05; letter-spacing: -1.5px; }
     p { max-width: 520px; margin: 0; color: var(--muted); font-size: 18px; line-height: 1.6; }
+    .description { margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(121,116,126,.18); }
+    .author { margin-top: 24px; color: var(--muted); font-size: 14px; font-weight: 700; }
     .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
     .button {
       min-height: 48px;
@@ -63,6 +65,7 @@
       :root { --bg: #1d1b20; --surface: #2b2930; --primary: #d0bcff; --on-primary: #381e72; --text: #e6e1e5; --muted: #cac4d0; }
       body { background: radial-gradient(circle at 12% 12%, rgba(208,188,255,.12), transparent 28rem), radial-gradient(circle at 88% 88%, rgba(103,80,164,.2), transparent 24rem), var(--bg); }
       .card { background: rgba(43,41,48,.92); border-color: rgba(202,196,208,.15); }
+      .description { border-color: rgba(202,196,208,.18); }
       .tonal { background: #4a4458; color: #e8def8; }
     }
   </style>
@@ -72,10 +75,12 @@
     <div class="icon" aria-hidden="true">🌐</div>
     <h1>Estonia Best Ping</h1>
     <p>Расширение для голосовых звонков Vendetta, которое выбирает сервер Rotterdam для наименьшей задержки из Эстонии.</p>
+    <p class="description">Здравствуйте, всем. Это мой первый опыт создания плагинов, расскажу подробнее. Данный плагин создан для модификатора для Discord "Distra" (open source, кстати, есть на GitHub). Данный плагин меняет местоположение на Эстонию, Германию и т.д. Понимаю, что этого мало, но это только первая версия этого плагина. Спасибо.</p>
     <div class="actions">
       <a class="button filled" href="https://discord.gg/kastazdess" target="_blank" rel="noopener noreferrer">Discord-сообщество</a>
       <a class="button tonal" href="https://github.com/floppa078-afk/reger" target="_blank" rel="noopener noreferrer">GitHub репозиторий</a>
     </div>
+    <div class="author">by tvarzek88</div>
   </main>
 </body>
 </html>
