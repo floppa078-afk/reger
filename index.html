@@ -6,21 +6,24 @@
   <meta name="theme-color" content="#6750a4">
   <title>Estonia Best Ping</title>
   <style>
+    @font-face { font-family: PriceDown; src: url("https://ffont.ru/upls/fonts/p/pricedow.ttf") format("truetype"); font-display: swap; }
+    @font-face { font-family: Minecraftia; src: url("https://ffont.ru/upls/fonts/m/minecraft.ttf") format("truetype"); font-display: swap; }
+    @font-face { font-family: RibbonHeart; src: url("https://fonts-online.ru/upls/font_files/ribbon-heart.ttf") format("truetype"); font-display: swap; }
     :root { --bg:#fffbfe; --surface:#f3edf7; --surface-2:#e8def8; --primary:#6750a4; --on-primary:#fff; --text:#1d1b20; --muted:#49454f; --border:rgba(73,69,79,.18); --shadow:0 16px 48px rgba(29,27,32,.14); --glow:rgba(103,80,164,.2); }
     * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:84px 20px 32px; overflow-x:hidden; background:radial-gradient(circle at 12% 12%,var(--glow),transparent 28rem),radial-gradient(circle at 88% 88%,rgba(3,0,56,.1),transparent 24rem),var(--bg); color:var(--text); font-family:Roboto,system-ui,-apple-system,"Segoe UI",sans-serif; transition:background .3s ease,color .3s ease; }
+    body { margin:0; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; padding:88px 20px 32px; overflow-x:hidden; background:radial-gradient(circle at 12% 12%,var(--glow),transparent 28rem),radial-gradient(circle at 88% 88%,rgba(3,0,56,.1),transparent 24rem),var(--bg); color:var(--text); font-family:Roboto,system-ui,-apple-system,"Segoe UI",sans-serif; transition:background .3s ease,color .3s ease; }
     body[data-mode="dark"] { --bg:#121116; --surface:#242129; --surface-2:#393342; --text:#f0edf4; --muted:#cac4d0; --border:rgba(230,225,229,.16); --shadow:0 18px 54px rgba(0,0,0,.35); }
     @media (prefers-color-scheme:dark) { body[data-mode="system"] { --bg:#121116; --surface:#242129; --surface-2:#393342; --text:#f0edf4; --muted:#cac4d0; --border:rgba(230,225,229,.16); --shadow:0 18px 54px rgba(0,0,0,.35); } }
     body[data-accent="blue"] { --primary:#0061a4; --on-primary:#fff; --glow:rgba(0,97,164,.2); }
     body[data-accent="green"] { --primary:#386a20; --on-primary:#fff; --glow:rgba(56,106,32,.2); }
     body[data-accent="pink"] { --primary:#984061; --on-primary:#fff; --glow:rgba(152,64,97,.2); }
     body[data-accent="orange"] { --primary:#8b5000; --on-primary:#fff; --glow:rgba(139,80,0,.2); }
-    body[data-font="gta"] { font-family:Pricedown,"Arial Black",Impact,sans-serif; }
+    body[data-font="gta"] { font-family:PriceDown,"Arial Black",Impact,sans-serif; }
     body[data-font="coloros"] { font-family:"OPPO Sans","ColorOS Sans",Roboto,Arial,sans-serif; }
     body[data-font="minecraft"] { font-family:Minecraftia,"Minecraft",monospace; }
-    body[data-font="hearts"] { font-family:"Heart Font","Comic Sans MS",cursive; }
-    .settings-wrap { position:fixed; z-index:10; top:16px; right:16px; }
-    .gear { width:52px; height:52px; display:grid; place-items:center; border:1px solid var(--border); border-radius:50%; background:var(--surface); color:var(--text); box-shadow:var(--shadow); font-size:24px; cursor:pointer; }
+    body[data-font="hearts"] { font-family:RibbonHeart,"Comic Sans MS",cursive; }
+    .settings-wrap { position:fixed; z-index:20; top:16px; right:16px; width:52px; height:52px; }
+    .gear { position:absolute; inset:0; width:52px; height:52px; display:grid; place-items:center; padding:0; border:1px solid var(--border); border-radius:50%; background:var(--surface); color:var(--text); box-shadow:var(--shadow); font:24px/1 system-ui,sans-serif; cursor:pointer; transition:transform .25s ease; }
     .gear:hover { transform:rotate(35deg); }
     button:focus-visible,select:focus-visible { outline:3px solid var(--primary); outline-offset:3px; }
     .settings { position:absolute; top:62px; right:0; width:min(340px,calc(100vw - 32px)); max-height:calc(100vh - 90px); overflow:auto; padding:20px; border:1px solid var(--border); border-radius:24px; background:var(--surface); box-shadow:var(--shadow); color:var(--text); }
@@ -56,7 +59,7 @@
     body.chaos-mode .card,body.chaos-mode .button,body.chaos-mode .icon { animation:chaos-float 1.8s ease-in-out infinite; }
     body.chaos-mode .chaos-char { display:inline-block; animation:chaos-letter 1.7s ease-in-out infinite; animation-delay:var(--delay); }
     @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; animation-iteration-count:1!important; scroll-behavior:auto!important; } }
-    @media (max-width:480px) { .settings-wrap { top:12px; right:12px; } body { padding:76px 16px 24px; } }
+    @media (max-width:480px) { .settings-wrap { top:max(12px,env(safe-area-inset-top)); right:max(12px,env(safe-area-inset-right)); } body { padding:76px 16px 24px; } }
   </style>
 </head>
 <body data-style="material" data-mode="system" data-accent="purple" data-font="roboto">
@@ -67,7 +70,7 @@
       <div class="setting"><label for="style-select">Стиль оформления</label><select id="style-select"><option value="material">Material You 3</option><option value="glass">Liquid Glass</option><option value="nothing">Nothing OS</option></select></div>
       <div class="setting"><label for="mode-select">Тема</label><select id="mode-select"><option value="system">Как в системе</option><option value="light">Светлая</option><option value="dark">Тёмная</option></select></div>
       <div class="setting"><label for="accent-select">Акцентный цвет</label><select id="accent-select"><option value="purple">Фиолетовый</option><option value="blue">Синий</option><option value="green">Зелёный</option><option value="pink">Розовый</option><option value="orange">Оранжевый</option></select></div>
-      <div class="setting"><label for="font-select">Шрифт</label><select id="font-select"><option value="roboto">Roboto (обычный)</option><option value="gta">GTA: San Andreas (Pricedown)</option><option value="coloros">ColorOS / OPPO Sans</option><option value="minecraft">Minecraft</option><option value="hearts">Шрифт с сердечками</option></select></div>
+      <div class="setting"><label for="font-select">Шрифт</label><select id="font-select"><option value="roboto">Roboto</option><option value="gta">GTA: San Andreas</option><option value="coloros">ColorOS / OPPO Sans</option><option value="minecraft">Minecraft</option><option value="hearts">С сердечками (Ribbon Heart)</option></select></div>
       <div class="setting"><label>Отдельная утилита</label><button class="chaos-control" id="chaos-toggle" type="button" aria-pressed="false">🌀 Включить хаос</button></div>
     </section>
   </div>
@@ -88,31 +91,23 @@
     const toggle = document.getElementById('settings-toggle');
     const panel = document.getElementById('settings-panel');
     const chaosToggle = document.getElementById('chaos-toggle');
-    const controls = {
-      style:document.getElementById('style-select'),
-      mode:document.getElementById('mode-select'),
-      accent:document.getElementById('accent-select'),
-      font:document.getElementById('font-select')
-    };
+    const controls = { style:document.getElementById('style-select'), mode:document.getElementById('mode-select'), accent:document.getElementById('accent-select'), font:document.getElementById('font-select') };
     const defaults = { style:'material', mode:'system', accent:'purple', font:'roboto' };
     let saved = {};
     try { saved = JSON.parse(localStorage.getItem('estonia-ping-settings') || '{}'); } catch (_) {}
     for (const [key,control] of Object.entries(controls)) {
       const value = saved[key];
       control.value = [...control.options].some(option => option.value === value) ? value : defaults[key];
-      if (key !== 'font') body.dataset[key] = control.value;
-      else body.dataset.font = control.value;
+      body.dataset[key] = control.value;
       control.addEventListener('change',() => {
-        if (key === 'font') body.dataset.font = control.value;
-        else body.dataset[key] = control.value;
+        body.dataset[key] = control.value;
         try { localStorage.setItem('estonia-ping-settings',JSON.stringify(Object.fromEntries(Object.entries(controls).map(([name,item]) => [name,item.value])))); } catch (_) {}
       });
     }
     toggle.addEventListener('click',() => { const opening = panel.hidden; panel.hidden = !opening; toggle.setAttribute('aria-expanded',String(opening)); });
     document.addEventListener('click',event => { if (!panel.hidden && !panel.contains(event.target) && !toggle.contains(event.target)) { panel.hidden = true; toggle.setAttribute('aria-expanded','false'); } });
     document.addEventListener('keydown',event => { if (event.key === 'Escape' && !panel.hidden) { panel.hidden = true; toggle.setAttribute('aria-expanded','false'); toggle.focus(); } });
-    const chaosText = [...document.querySelectorAll('h1, main p')];
-    for (const element of chaosText) {
+    for (const element of document.querySelectorAll('h1, main p')) {
       const original = element.textContent;
       element.setAttribute('aria-label',original);
       element.textContent = '';
